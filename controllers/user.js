@@ -23,11 +23,11 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   // find user based on email
-  const {} = req.body;
-  User.findOne({ email }, () => {
+  const { email, password } = req.body;
+  User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        err: "User witht that email does not exist, Please signup."
+        err: "User with that email does not exist, Please signup."
       });
     }
     // if user is found, make sure that the email and password match
@@ -41,6 +41,7 @@ exports.signin = (req, res) => {
     // persist the token as 't' in cookies with expiry date
     res.cookie("t", token, { expire: new Date() + 9999 });
     // return response with user and token to frontend client
+    const { _id, name, email, role } = user;
     return res.json({ token, user: { _id, email, name, role } });
   });
 };
