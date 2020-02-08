@@ -4,6 +4,23 @@ const fs = require("fs");
 const Product = require("../models/product");
 const { errorHandler } = require("../helpers/dbErrorHAndler");
 
+exports.productById = (req, res, next, id) => {
+  Product.findById(id).exec((err, product) => {
+    if (err || !product) {
+      return res.status(400).json({
+        error: "Product not found"
+      });
+    }
+    req.product = product;
+    next();
+  });
+};
+
+exports.read = (req, res) => {
+  req.product.photo = undefined;
+  return res.json(req.product);
+};
+
 exports.create = (req, res) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
@@ -14,7 +31,7 @@ exports.create = (req, res) => {
       });
     }
 
-    const { name, description, price, category, quantity, shipping } = filelds;
+    const { name, description, price, category, quantity, shipping } = fields;
 
     if (
       !name ||
@@ -24,7 +41,7 @@ exports.create = (req, res) => {
       !quantity ||
       !shipping
     ) {
-      return res.status(400).josn({
+      return res.status(400).json({
         error: "All fields are required"
       });
     }
