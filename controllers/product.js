@@ -26,7 +26,7 @@ exports.create = (req, res) => {
   form.keepExtensions = true;
   form.parse(req, (err, fields, files) => {
     if (err) {
-      return res.status(400).josn({
+      return res.status(400).json({
         error: "Image could not be uploaded"
       });
     }
@@ -151,5 +151,22 @@ exports.list = (req, res) => {
         });
       }
       res.send(products);
+    });
+};
+
+exports.listRelated = (req, res) => {
+  let limit = req.query.limit ? parseInt(req.query.limit) : 7;
+
+  // return all products in the same category, except the pne being sent with thr req
+  Product.find({ _id: { $ne: req.product }, category: req.product.category })
+    .limit(limit)
+    .populate("category", "_id name")
+    .exec((err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Products not found"
+        });
+      }
+      res.json(products);
     });
 };
