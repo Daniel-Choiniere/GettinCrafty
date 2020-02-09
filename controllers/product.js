@@ -225,3 +225,11 @@ exports.listProductsBySearch = (req, res) => {
       });
     });
 };
+
+exports.photo = (req, res) => {
+  if (req.product.photo.data) {
+    res.set("Content-Type", req.product.photo.contnetType);
+    return res.send(req.product.photo.data);
+  }
+  next();
+};
