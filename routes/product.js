@@ -6,13 +6,15 @@ const {
   productById,
   read,
   remove,
-  update
+  update,
+  list
 } = require("../controllers/product");
 const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
 
 router.get("/product/:productId", read);
 router.post("/product/create/:userId", requireSignin, isAdmin, isAuth, create);
+
 router.delete(
   "/product/:productId/:userId",
   requireSignin,
@@ -20,6 +22,7 @@ router.delete(
   isAuth,
   remove
 );
+
 router.put(
   "/product/:productId/:userId",
   requireSignin,
@@ -27,6 +30,8 @@ router.put(
   isAuth,
   update
 );
+
+router.get("/products", list);
 
 router.param("userId", userById);
 router.param("productId", productById);
