@@ -37,3 +37,5 @@ exports.update = (req, res) => {
     }
   );
 };
+
+exports.addOrderToUserHistory = () => {};
