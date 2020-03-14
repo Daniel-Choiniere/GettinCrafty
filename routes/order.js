@@ -21,7 +21,6 @@ router.get(
   requireSignin,
   isAuth,
   isAdmin,
-  listOrders,
   getStatusValues
 );
 
