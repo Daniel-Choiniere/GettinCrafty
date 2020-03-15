@@ -27,7 +27,7 @@ exports.update = (req, res) => {
     { new: true },
     (err, user) => {
       if (err) {
-        return res.ststays(400).json({
+        return res.status(400).json({
           error: "You are not authorized to perform this action"
         });
       }
