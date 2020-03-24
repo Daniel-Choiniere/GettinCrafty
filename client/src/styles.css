@@ -1,0 +1,80 @@
+/**
+ * border radius
+ */
+
+.btn,
+.jumbotron,
+.nav :hover {
+  border-radius: 0px;
+}
+
+/* cart badge */
+
+.cart-badge,
+.cart-badge:hover {
+  border-radius: 60%;
+  padding: 5px;
+  font-size: 20px;
+  font-style: italic;
+  background: #4f7964;
+}
+
+.product-img {
+  min-height: 100px;
+}
+
+.jumbotron h2 {
+  margin-top: -20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .jumbotron h2 {
+    margin-top: 10px;
+  }
+}
+
+.jumbotron {
+  position: relative;
+  background: #000
+    url("https://cdn.pixabay.com/photo/2017/05/23/10/26/plant-2336779__340.jpg")
+    center center;
+  width: %;
+  height: 100%;
+  background-size: cover;
+  color: #fff;
+}
+
+.homeTitle {
+  font-weight: bolder;
+}
+
+.nav-image {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-link {
+  font-family: Courier;
+  font-size: 25px;
+}
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.home-product-title {
+  font-family: Arial;
+  color: #414826;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.card-title {
+  font-family: Courier;
+}
+
+.dashboard-header {
+  font-family: Verdana;
+  font-weight: bold;
+}
