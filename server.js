@@ -1,9 +1,7 @@
 const express = require("express");
-const compression = require("compression");
 const path = require("path");
 const app = express();
 
-app.use(compression());
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.get("*", function(req, res) {
