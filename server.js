@@ -2,6 +2,18 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+mongoose
+  .connect(process.env.MONGODB_URI || process.env.DATABASE, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("DB Connected"));
+
+mongoose.connection.on("error", err => {
+  console.log(`DB Connection error: ${err.message}`);
+});
+
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
