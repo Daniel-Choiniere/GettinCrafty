@@ -12,12 +12,11 @@ const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const braintreeRoutes = require("./routes/braintree");
 const orderRoutes = require("./routes/order");
-const path = require("path");
 
 const app = express();
 
 mongoose
-  .connect(process.env.MONGODB_URI || process.env.DATABASE, {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
